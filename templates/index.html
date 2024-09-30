@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <title>PDF File Repository Viewer</title>
+
+  </head>
+
+<body>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4"> PDF File Repository Viewer </h1>
+    <p class="lead">This demo site shows how <a href="https://github.com/liamcryan/pdf-repo-viewer">pdf-repo-viewer</a>
+        can serve pdf files from a file system.  This enables a user to navigate and view or download files from a browser
+        on a desktop or phone.</p>
+      <p class="lead">The blue buttons correspond to folders and the light buttons to pdf files.  </p>
+  </div>
+</div>
+
+<div class="container">
+
+    <div class="container">{{ display_root }}</div>
+
+
+    <div class="container">
+        <ul class="list-group">
+        {% for d in directories %}
+            <li class="list-group-item">
+                <form method="post" action="{{ url_for('index', root=root, directory=d) }}">
+                    <button type="submit" class="btn btn-primary btn-sm"> {{ d }} </button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <ul class="list-group">
+        {% for f in files %}
+            <li class="list-group-item">
+                <form method="post" action="{{ url_for('index', root=root, directory=d, file=f) }}">
+                    <button type="submit" class="btn btn-outline-primary btn-sm"> {{ f }} </button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+
+    </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
